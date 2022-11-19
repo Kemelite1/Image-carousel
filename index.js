@@ -9,7 +9,9 @@ document.querySelector('.prev').addEventListener('click', () => {
     const i = (images.indexOf(imageSrc.split('/')[1]) - 1 + 5) % 5;
     const image = `img/${images[i]}`;
 
-    disImg.setAttribute('src', image);
+    // disImg.setAttribute('src', image);
+    disImg.src = image
+    console.log('change image1')
     disImg.setAttribute('alt', altText[i]);
     disImg.setAttribute('srcset', image)
 })
