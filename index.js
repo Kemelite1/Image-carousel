@@ -1,48 +1,30 @@
+const heading = document.querySelector('h1');
+const disImg = document.querySelector('.displayed-img');
 
-var track = document.querySelector('.carouseltrack');
-var slides = Array.from(track.children);
-var nextButton = document.querySelector('.carousel-button--left');
-var prevButton = document.querySelector('.carousel-button--right');
-var dotsNav = document.querySelector('.carouselnav');
-var dots = Array.from('dotsNav.children');
+const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+const altText = ['img1', 'img2', 'img3', 'img4', 'img5'];
 
-var slideWidth = slides[0].getBoundingClientRect().width;
+// img/img1.jpg
+// img/img2.jpg
+// img/img3.jpg
+// img/img4.JPG
+// mg/img5.jpg
+// img/img6.jpg
 
-// console.log(slideWidth);
+document.querySelector('.next').addEventListener('click', () => {
+    const imageSrc = disImg.getAttribute('src')
+    const i = (images.indexOf(imageSrc.split('/')[1]) + 1) % 5;
+    const image = `img/${images[i]}`;
 
+    disImg.setAttribute('src', image);
+    disImg.setAttribute('alt', altText[i]);
+})
 
-// arrange the slides next to one another
-var setSlidePosition = (slide, index) => {
-    slide.style.left = slideWidth * index + 'px';
+document.querySelector('.prev').addEventListener('click', () => {
+    const imageSrc = disImg.getAttribute('src')
+    const i = (images.indexOf(imageSrc.split('/')[1]) - 1 + 5) % 5;
+    const image = `img/${images[i]}`;
 
-
-};
-slides.forEach(setSlidePosition);
-
-var moveToSlide = (track, currentSlide, targetSlide) => {
-    console.log('ggg')
-    track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-    currentSlide.classList.remove('current-slide');
-    targetSlide.classList.add('current-slide');
-
-}
-
-// when i click left, move slides to the left
-prevButton.addEventListener('click', e => {
-    var currentSlide = track.querySelector('.current-slide');
-    var prevSlide = currentSlide.previousElementSibling;
-    
-    moveToSlide(track, currentSlide, prevSlide);
-
-});
-
-
-
-// when i click right, move slides to the right
-nextButton.addEventListener('click', e => {
-    var currentSlide = track.querySelector('.current-slide');
-    var nextSlide = currentSlide.nextElementSibling;
-    
-    moveToSlide(track, currentSlide, nextSlide);
-});
-// when i click the nav indicators, move to that slide
+    disImg.setAttribute('src', image);
+    disImg.setAttribute('alt', altText[i]);
+})
