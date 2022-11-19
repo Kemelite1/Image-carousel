@@ -11,7 +11,6 @@ document.querySelector('.prev').addEventListener('click', () => {
 
     // disImg.setAttribute('src', image);
     disImg.src = image
-    console.log('change image1')
     disImg.setAttribute('alt', altText[i]);
     disImg.setAttribute('srcset', image)
 })
